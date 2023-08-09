@@ -1,0 +1,66 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler:
+      branch: main
+      repo: https://github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-platinum-mastiff.sh
+        container: qc.acc_seedy-indigo-peccary
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-ecru-flounder.sh
+        container: qc.doc_freaky-asparagus-gharial
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler git:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-violet-sheep.sh
+        container: qc.doc_grumpy-black-olm
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-sangria-chamois.sh
+        container: qc.doc_stinky-olivine-flamingo
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-heliotrope-dugong.sh
+        container: qc.lic_whiny-cinnabar-spider
+  QC.Sec:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-rose-quail.sh
+        container: qc.sec_scaly-champagne-fousek
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.muggy-xanthic-spoonbill.sh
+        container: qc.sty_muzzy-flax-forest
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-cream-hare.sh
+        container: qc.sty_cloudy-cardinal-jaguar
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-cinnabar-quokka.sh
+        container: qc.sty_crappy-crimson-liger
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.oai-pmh-repo-handler get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.pokey-cornflower-fousek.sh
+        container: qc.ver_snappy-tangerine-sheepdog
+timeout: 5400
